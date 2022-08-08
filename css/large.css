@@ -1,4 +1,10 @@
-.productCard{
-    background-color: beige;
-    border-style: solid;
+
+
+@media only screen and (min-width: 68em) {
+
+  #filter {
+    overflow-x: hidden;
+    /* scrollbar-width: none;  */
+  }
+
 }

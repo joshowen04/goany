@@ -161,15 +161,14 @@ function listProducts(productList, filters = null) {
       //console.log(filters, product, filters.includes(product.name))
 
       let tags = product.tag.split(",");
-        
+
       contains = filters.every((element) => {
         //console.log(element,tags)
         return tags.includes(element);
       });
       //console.log(contains);
-      
-      
-      return contains
+
+      return contains;
     });
     //console.log(filterList);
     productList = filterList;
@@ -214,8 +213,7 @@ function buildTagList(productList) {
   productList.forEach((product) => {
     let perProductTag = product.tag.split(",");
     perProductTag.forEach((tag) => {
-
-        //const tagUpped = tag.charAt(0).toUpperCase() + tag.slice(1);
+      //const tagUpped = tag.charAt(0).toUpperCase() + tag.slice(1);
       tagList.push(tag);
     });
   });
@@ -224,85 +222,80 @@ function buildTagList(productList) {
   return uniquetagList;
 }
 
-function listProductsDetails(product) {
-  const productlist = document.querySelector("#productlist");
-  console.log("insideFunction", product);
-  // products.forEach((product) => {
-  //     //console.log(week.name);
-  //     let name = product.name;
-  //     let price = product.price;
-  //     let details = product.details;
-  //     let availability = product.availability;
-  //     let imagesrc = product.imagesrc;
-  //     let tag = product.tag.split(",");
+function listProductsDetails(selectedProduct) {
+  let productlist = document.querySelector("#productlist");
+  let product = products.find((product) => product.name === selectedProduct);
+  const detaildiv = document.querySelector(".details");
+  detaildiv.classList.remove("hidden");
+  detaildiv.addEventListener("click",() => detaildiv.classList.add("hidden"))
+  detaildiv.scrollIntoView();
+  detaildiv.innerHTML = "";
+  let name = product.name;
+  let price = product.price;
+  let details = product.details;
+  let availability = product.availability;
+  let imagesrc = product.imagesrc;
+  let tag = product.tag.split(",");
 
-  //     let newItem = document.createElement("div");
-  //     newItem.classList.add("productCard")
-  //     newItem.setAttribute("tags",`${tag}`)
-  //     newItem.setAttribute("product",name)
+  let newItem = document.createElement("div");
+  newItem.classList.add("productCardLarge");
 
-  //     let newName = document.createElement("h3");
-  //     newName.innerHTML = name;
-  //     newName.classList.add("name");
+  let newName = document.createElement("h3");
+  newName.innerHTML = name;
+  newName.classList.add("nameLarge");
 
-  //     let newImg = document.createElement("img");
-  //     newImg.src = `${images}/${imagesrc}`;
-  //     newImg.alt = name;
-  //     newImg.classList.add("productImage");
+  let newImg = document.createElement("img");
+  newImg.src = `${images}/${imagesrc}_small.jpg`;
+  newImg.alt = name;
+  newImg.classList.add("productImageLarge");
 
-  //     let  newDet = document.createElement("p");
-  //     newDet.innerHTML = details;
-  //     newDet.classList.add("details");
+  let newDet = document.createElement("p");
+  newDet.innerHTML = details;
+  newDet.classList.add("detailsLarge");
 
-  //     let newPrice = document.createElement("p");
-  //     newPrice.innerHTML = price;
-  //     newPrice.classList.add("price");
+  let newPrice = document.createElement("p");
+  newPrice.innerHTML = price;
+  newPrice.classList.add("priceLarge");
 
-  //     let newAvail = document.createElement("p");
-  //     newAvail.innerHTML = availability;
-  //     newAvail.classList.add("availability");
+  let newAvail = document.createElement("p");
+  newAvail.textContent = `Disponibilidad: ${availability}`;
+  newAvail.classList.add("availabilityLarge");
 
-  //     let tags =
-  //     newItem.append(newName,newImg,newDet,newPrice,newAvail);
+  let tags = newItem.append(newName, newImg, newDet, newPrice, newAvail);
 
-  //     productlist.appendChild(newItem);
-  // });
+  detaildiv.appendChild(newItem);
 }
-filters = ["postre","ceviche"];
 
-
-
-function buildFilterButtons()
-{
-    const filterbuttons = buildTagList(products);
-    const filterIcons = document.querySelector("#filterIcons");
-    filterbuttons.forEach(filtername =>
-        {
-            let button = document.createElement("p");
-            button.innerText = filtername;
-            button.id = filtername;
-            button.className = "filterButtons";
-            filterIcons.appendChild(button);
-            button.addEventListener("click",selected);
-        })
+function buildFilterButtons() {
+  const filterbuttons = buildTagList(products);
+  const filterIcons = document.querySelector("#filterIcons");
+  filterbuttons.forEach((filtername) => {
+    let button = document.createElement("p");
+    let closeX = document.createElement("span");
+    closeX.textContent = "X ";
+    closeX.className = "hidden";
+    let buttonName = document.createElement("span");
+    button.append(closeX, buttonName);
+    buttonName.textContent = filtername;
+    button.id = filtername;
+    button.className = "filterButtons";
+    filterIcons.appendChild(button);
+    button.addEventListener("click", selected);
+  });
 }
 
 function selected(e) {
-    e.target.classList.toggle("selected")
+  closeX = document.querySelector(`#${e.currentTarget.id} span`);
+  e.currentTarget.classList.toggle("selected");
+  closeX.classList.toggle("hidden");
+  const selectedFilters = document.querySelectorAll(".selected");
+  let filterList = [];
+  selectedFilters.forEach((element) => {
+    filterList.push(element.id);
+  });
+  //console.log(filterList)
+  listProducts(products, filterList);
+}
 
-    const selectedFilters = document.querySelectorAll(".selected");
-    let filterList = []
-    selectedFilters.forEach((element) => {
-        filterList.push(element.id)
-    }
-    )
-    //console.log(filterList)
-    listProducts(products,filterList);
-};
-
-
-
-listProducts(products,[]);
+listProducts(products, []);
 buildFilterButtons();
-
-

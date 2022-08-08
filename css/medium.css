@@ -1,26 +1,3 @@
 @media only screen and (min-width: 37.5em) {
 
-
-    #filter{
-        max-width:100%;
-        overflow-x: hidden;
-        
-    }
-    #filterIcons {
-        width:100%;
-
-    }
-    .filterButtons{
-        padding:10px;
-        background-color: var(--accent-color-3);
-        border-style: solid;
-        border-radius: 20px;
-        width:100px;
-        margin:1%
-    }
-    .selected{
-        background-color: var(--accent-color-1);
-    }
-    
-    
 }
