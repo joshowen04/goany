@@ -66,16 +66,20 @@ header, footer{
     display: none;
 }
 #filterIcons {
-    width:700px;
+    width:1200px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-#filterIcons p{
+
+.filterButtons{
     padding:10px;
     background-color: var(--accent-color-3);
     border-style: solid;
     border-radius: 20px;
     width:100px;
     margin:1%
+}
+.selected{
+    background-color: var(--accent-color-1);
 }
