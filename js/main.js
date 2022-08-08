@@ -271,11 +271,11 @@ function buildFilterButtons() {
   const filterIcons = document.querySelector("#filterIcons");
   filterbuttons.forEach((filtername) => {
     let button = document.createElement("p");
-    let closeX = document.createElement("span");
-    closeX.textContent = "X ";
-    closeX.className = "hidden";
+    // let closeX = document.createElement("span");
+    // closeX.textContent = "X ";
+    // closeX.className = "hidden";
     let buttonName = document.createElement("span");
-    button.append(closeX, buttonName);
+    button.append(buttonName);
     buttonName.textContent = filtername;
     button.id = filtername;
     button.className = "filterButtons";
@@ -285,9 +285,9 @@ function buildFilterButtons() {
 }
 
 function selected(e) {
-  closeX = document.querySelector(`#${e.currentTarget.id} span`);
+  //closeX = document.querySelector(`#${e.currentTarget.id} span`);
   e.currentTarget.classList.toggle("selected");
-  closeX.classList.toggle("hidden");
+  //closeX.classList.toggle("hidden");
   const selectedFilters = document.querySelectorAll(".selected");
   let filterList = [];
   selectedFilters.forEach((element) => {
