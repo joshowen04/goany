@@ -1,7 +1,12 @@
 
 
 @media only screen and (min-width: 68em) {
+    .details {
 
+        position: fixed;
+        top:100px;
+        left: 1%;
+      }
   #filter {
     overflow-x: hidden;
     /* scrollbar-width: none;  */
