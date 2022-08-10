@@ -11,7 +11,7 @@ export default class AddToCart {
             this.cart.push(item);
             localStorage.setItem('cart', JSON.stringify(this.cart));
             let shoppingCart = document.querySelector("#shoppingCart")
-            shoppingCart.src = "../images/icons/shopping-cart-icon-full_50.png"
+            shoppingCart.src = "./images/icons/shopping-cart-icon-full_50.png"
         }
         deleteItem(){
             this.cart = this.getItems();
@@ -24,7 +24,7 @@ export default class AddToCart {
         deleteallItems(){
             localStorage.setItem('cart', "");
             let shoppingCart = document.querySelector("#shoppingCart")
-            shoppingCart.src = "../images/icons/shopping-cart-icon_50.png"
+            shoppingCart.src = "./images/icons/shopping-cart-icon_50.png"
         }
 
     }
