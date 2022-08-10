@@ -1,16 +1,36 @@
 
 
 @media only screen and (min-width: 68em) {
-    .details {
+    /* .details {
 
         position: fixed;
         top:100px;
         left: 1%;
-      }
+      } */
   #filter {
     overflow-x: hidden;
     /* scrollbar-width: none;  */
   }
 
+  #cartIconDiv {
+    position:relative;
+    width: 95vw;
+    /* border-style: solid;
+    border-color: aliceblue; */
+
+  }
+
+  #shoppingCart{
+    position:absolute;
+    left:95%;
+    top:-80px;
+  }
+
+/* 
+  #cartQuantity{
+    position:absolute;
+    left:90vw;
+    bottom:10px;
+  } */
 
 }
